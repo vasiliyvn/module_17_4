@@ -18,8 +18,6 @@ router = APIRouter(prefix='/user', tags=['user'])
 @router.get('/')
 async def all_users(db: Annotated[Session, Depends(get_db)]):
     users = db.scalars(select(User)).all()
-    if users is None:
-        raise HTTPException(status_code=404, detail='Users was not')
     return users
 
 
